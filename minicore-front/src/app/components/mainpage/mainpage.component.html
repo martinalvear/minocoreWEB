@@ -1,0 +1,74 @@
+<div class="row">
+  <h1>Clientes</h1>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre del cliente</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let client of clients">
+      <tr>
+        <td>{{ client.id }}</td>
+        <td>{{ client.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <h1>Contratos</h1>
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Monto</th>
+          <th scope="col">Nombre del cliente</th>
+          <th scope="col">Fecha</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let contract of contracts">
+        <tr>
+          <td>{{ contract.id }}</td>
+          <td>{{ contract.amount }}</td>
+          <td>{{ contract.client.name }}</td>
+          <td>{{ contract.date | date : "dd/MM/yyyy" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <h1>Minicore</h1>
+  <form (submit)="getReports()">
+    <label for="fechaInicio">&nbsp;Fecha Inicio:&nbsp;&nbsp;</label>
+    <input
+      type="date"
+      name="fechaInicio"
+      id="fechaInicio"
+      [(ngModel)]="dates.beginDate"
+    />
+    <label for="fechaFin">&nbsp;&nbsp;Fecha Fin:&nbsp;&nbsp;</label>
+    <input
+      type="date"
+      name="fechaFin"
+      id="fechaFin"
+      [(ngModel)]="dates.endDate"
+    />
+    <button type="submit">Visualizar</button>
+  </form>
+</div>
+<div class="row">
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">Nombre del cliente</th>
+        <th scope="col">Monto total</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let report of reports">
+      <tr>
+        <td>{{ report.name }}</td>
+        <td>{{ report.totalAmount }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
